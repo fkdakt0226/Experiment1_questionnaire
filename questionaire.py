@@ -175,10 +175,6 @@ elif st.session_state["page"] == "sus":
             except Exception as e:
                 st.error(f"Google Sheetsへの保存中にエラーが発生しました: {e}")
 
-            # ✅ SUS送信後の完了画面へ遷移
-            st.session_state["page"] = "sus_done"
-            st.rerun()
-
 # --- SUS回答完了ページ ---
 elif st.session_state["page"] == "sus_done":
     st.success("回答を保存しました。ありがとうございました！")
