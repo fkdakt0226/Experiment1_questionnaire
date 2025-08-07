@@ -80,7 +80,7 @@ if st.session_state["page"] == "nasa_tlx":
 
             # 回答データ作成
             response_data = {
-                "タイムスタンプ": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "タイムスタンプ": datetime.now().strftime("%Y-%m-%d %H:%M:%S:%Z"),
                 "ID": respondent_id,
                 "条件": experiment_condition_nasa
             }
