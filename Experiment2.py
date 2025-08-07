@@ -2,12 +2,12 @@ import streamlit as st
 import pandas as pd
 import os
 import gspread
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from google.oauth2 import service_account
 
 scope = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
-#credentials = service_account.Credentials.from_service_account_file("auto-reserve-367912-50ccc9b37e8f.json", scopes=scope)
-credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+credentials = service_account.Credentials.from_service_account_file("auto-reserve-367912-50ccc9b37e8f.json", scopes=scope)
+#credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
 gc = gspread.authorize(credentials)
 
 SPREADSHEET_KEY = "16IwSCosz6aRv5IDU-0IQPqV9hVpgbMFh_Lz-dFxSQjI"
@@ -79,9 +79,10 @@ if st.session_state["page"] == "nasa_tlx":
             st.session_state["nasa_answers"] = slider_results
             st.session_state["experiment_condition"] = experiment_condition_nasa
 
+            JST = timezone(timedelta(hours=9))
             # 回答データ作成
             response_data = {
-                "タイムスタンプ": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "タイムスタンプ": datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S"),
                 "ID": respondent_id,
                 "条件": experiment_condition_nasa
             }
