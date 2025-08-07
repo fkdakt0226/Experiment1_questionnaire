@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import gspread
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from google.oauth2 import service_account
 
 scope = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
@@ -78,9 +78,10 @@ if st.session_state["page"] == "nasa_tlx":
             st.session_state["nasa_answers"] = slider_results
             st.session_state["experiment_condition"] = experiment_condition_nasa
 
+            JST = timezone(timedelta(hours=9))
             # 回答データ作成
             response_data = {
-                "タイムスタンプ": datetime.now().strftime("%Y-%m-%d %H:%M:%S:%Z"),
+                "タイムスタンプ": datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S"),
                 "ID": respondent_id,
                 "条件": experiment_condition_nasa
             }
