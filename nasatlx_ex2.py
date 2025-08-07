@@ -14,7 +14,7 @@ gc = gspread.authorize(credentials)
 
 SPREADSHEET_KEY = "16IwSCosz6aRv5IDU-0IQPqV9hVpgbMFh_Lz-dFxSQjI"
 workbook = gc.open_by_key(SPREADSHEET_KEY)
-ws = workbook.worksheet("NASA_W_EX1")
+ws = workbook.worksheet("NASA_W_EX2")
 
 JST = timezone(timedelta(hours=9))
 
